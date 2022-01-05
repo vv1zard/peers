@@ -95,7 +95,7 @@ class Ethernodes:
             peer=peer_file.readline()
             while peer:
                 # print(peer)
-                command="gethr.exe attach http://localhost:8545 --exec \"admin.addPeer(\'{peer[:-1]}\')\""
+                command=f"gethr.exe attach http://localhost:8545 --exec \"admin.addPeer(\'{peer[:-1]}\')\""
                 os.system(command)
                 peer=peer_file.readline()
 
@@ -104,7 +104,9 @@ class Ethernodes:
             peer=peer_file.readline()
             while peer:
                 # print(peer)
-                command="/root/projects/geth/build/bin/geth  attach http://localhost:8545 --exec \"admin.addPeer(\'{peer[:-1]}\')\""
+                command="/root/projects/geth/build/bin/geth  attach http://localhost:8545 --exec \"admin.addPeer(\'"
+                command+=peer[:-1]
+                command+="\')\""
                 os.system(command)
                 peer=peer_file.readline()
 
