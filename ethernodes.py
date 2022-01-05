@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-  
+
 import logging
 import requests
 import os
@@ -93,9 +95,17 @@ class Ethernodes:
             peer=peer_file.readline()
             while peer:
                 # print(peer)
-                command=f"gethr.exe attach http://localhost:8545 --exec \"admin.addPeer(\'{peer[:-1]}\')\""
+                command="gethr.exe attach http://localhost:8545 --exec \"admin.addPeer(\'{peer[:-1]}\')\""
                 os.system(command)
                 peer=peer_file.readline()
 
+    def load_peers_linux(self):
+        with open('./peers.txt', 'r') as peer_file:
+            peer=peer_file.readline()
+            while peer:
+                # print(peer)
+                command="./build/bin/geth  attach http://localhost:8545 --exec \"admin.addPeer(\'{peer[:-1]}\')\""
+                os.system(command)
+                peer=peer_file.readline()
 
     
